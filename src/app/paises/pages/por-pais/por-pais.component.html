@@ -1,14 +1,12 @@
 <h2>Por País</h2>
-<hr>
+<hr />
 <div class="row">
     <div class="col">
-        <form autocomplete="off" (ngSubmit)="buscar()">
-            <input type="text" name="termino" placeholder="Buscar país..." class="form-control" [(ngModel)]="termino">
-        </form>
+        <app-busqueda (onEnterPais)="buscar($event)" (onDebounce)="sugerencias( $event )" inputPlaceHolder="Buscar país..."></app-busqueda>
     </div>
 </div>
 
-<hr>
+<hr />
 
 <div class="alert alert-danger" *ngIf="hayError">
     No se encontró nada con el término: <strong>{{ termino }}</strong>

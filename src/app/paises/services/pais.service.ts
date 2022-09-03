@@ -12,9 +12,28 @@ export class PaisService {
   constructor(
     private http: HttpClient
   ) { }
+
+  generarEndpoint(enpoint: string) {
+    return `${ this.apiUrl }${ enpoint }`
+  }
   
   buscarPais(termino: string): Observable<Country[]> {
-    const url = `${ this.apiUrl }/name/${ termino }`
+    const url = this.generarEndpoint(`/name/${ termino }`)
     return this.http.get<Country[]>( url )
+  }
+
+  buscarCapital(termino: string) : Observable<Country[]> {
+    const url = this.generarEndpoint(`/capital/${ termino }`)
+    return this.http.get<Country[]>( url )
+  }
+
+  buscarRegion(termino: string) : Observable<Country[]> {
+    const url = this.generarEndpoint(`/region/${ termino }`)
+    return this.http.get<Country[]>( url )
+  }
+
+  getPaisPorCodigo(codigo: string) : Observable<Country> {
+    const url = this.generarEndpoint(`/alpha/${ codigo }`)
+    return this.http.get<Country>( url )
   }
 }

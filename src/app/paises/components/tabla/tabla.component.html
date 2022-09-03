@@ -14,10 +14,10 @@
             <td>
                 <img [src]="p.flags.png" class="small-flag">
             </td>
-            <td> {{ p.name.common }} </td>
+            <td> {{ p.capital}} - {{ p.name.common }} </td>
             <td> {{ p.population | number }} </td>
             <td>
-                <a [routerLink]="['/pais/p.cca2']">Ver...</a>
+                <a routerLink="/pais/{{ p.cca2 }}">Ver...</a>
             </td>
         </tr>
     </tbody>
