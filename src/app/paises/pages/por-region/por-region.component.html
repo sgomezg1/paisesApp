@@ -1,19 +1,9 @@
-<h2>Por Región</h2>
-<hr />
+<h3>Buscar por región <small>{{ regionActiva | titlecase }}</small></h3>
+
+<h5>Seleccione la región</h5>
+
 <div class="row">
     <div class="col">
-        <app-busqueda (onEnterPais)="buscar($event)" (onDebounce)="sugerencias( $event )" inputPlaceHolder="Buscar Región..."></app-busqueda>
-    </div>
-</div>
-
-<hr />
-
-<div class="alert alert-danger" *ngIf="hayError">
-    No se encontró nada con el término: <strong>{{ termino }}</strong>
-</div>
-
-<div class="row" *ngIf="regiones.length > 0">
-    <div class="col">
-        <app-tabla [paises]="regiones"></app-tabla>
+        <button *ngFor="let r of regiones" class="btn btn-outline-primary" (click)="activarRegion(r)">{{ r }}</button>
     </div>
 </div>
