@@ -24,7 +24,7 @@ export class VerPaisComponent implements OnInit {
         if (!pais) {
           return this.router.navigateByUrl('');
         }
-        this.pais = pais[0];
+        this.pais = pais;
         return;
       });
   }

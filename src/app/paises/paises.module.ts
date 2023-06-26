@@ -8,8 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TablaComponent } from './components/tabla/tabla.component';
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
-
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,18 +17,14 @@ import { BusquedaComponent } from './components/busqueda/busqueda.component';
     PorCapitalComponent,
     VerPaisComponent,
     TablaComponent,
-    BusquedaComponent
+    BusquedaComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule
-  ],
+  imports: [CommonModule, FormsModule, RouterModule, SharedModule],
   exports: [
     PorRegionComponent,
     PorPaisComponent,
     PorCapitalComponent,
-    VerPaisComponent
-  ]
+    VerPaisComponent,
+  ],
 })
-export class PaisesModule { }
+export class PaisesModule {}

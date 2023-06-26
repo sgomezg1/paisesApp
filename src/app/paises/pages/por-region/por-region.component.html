@@ -16,11 +16,13 @@
   </div>
 </div>
 
+<hr />
+
 <div class="alert alert-danger" *ngIf="hayError">
   No se encontraron paises para la region: <strong>{{ regionActiva }}</strong>
 </div>
 
-<div class="row" *ngIf="paisesRegion.length > 0">
+<div class="row">
   <div class="col">
     <app-tabla [paises]="paisesRegion"></app-tabla>
   </div>
