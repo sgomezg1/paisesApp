@@ -20,6 +20,7 @@ export class BusquedaComponent implements OnInit, OnDestroy {
   @Output() onDebounce: EventEmitter<string> = new EventEmitter();
 
   @Input() inputPlaceHolder: string = new Input();
+  @Input() initialValue: string = new Input();
 
   onDebounce$: Subject<string> = new Subject();
   termino: string = '';
@@ -34,7 +35,6 @@ export class BusquedaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.debouncerSubscription?.unsubscribe();
-    console.log('destruido');
   }
 
   buscar() {

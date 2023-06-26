@@ -9,6 +9,7 @@ import { Country } from '../../interfaces/pais.interface';
 })
 export class PorCapitalComponent implements OnInit {
   termino: string = '';
+  terminoInicial: string = '';
   hayError: boolean = false;
   capitales: Country[] = [];
   isLoading: boolean = false;
@@ -20,11 +21,13 @@ export class PorCapitalComponent implements OnInit {
     this.hayError = false;
     this.isLoading = true;
     this.paisServ.buscarCapital(this.termino).subscribe(
-      (capitales) => (this.capitales = capitales),
+      (capitales) => {
+        this.capitales = capitales;
+        this.isLoading = false;
+      },
       (err) => {
         this.hayError = true;
         this.capitales = [];
-        this.isLoading = false;
       }
     );
   }
@@ -35,5 +38,8 @@ export class PorCapitalComponent implements OnInit {
     // TODO: Crear sugerencias
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.capitales = this.paisServ.cacheStore.byCapital.countries;
+    this.terminoInicial = this.paisServ.cacheStore.byCapital.term;
+  }
 }

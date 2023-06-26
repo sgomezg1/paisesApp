@@ -3,9 +3,9 @@
 <div class="row">
   <div class="col">
     <app-busqueda
-      (onEnterPais)="buscar($event)"
       (onDebounce)="buscar($event)"
       inputPlaceHolder="Buscar capital..."
+      [initialValue]="terminoInicial"
     ></app-busqueda>
   </div>
 </div>

@@ -9,16 +9,22 @@ import { PaisService } from '../../services/pais.service';
 })
 export class PorPaisComponent implements OnInit {
   termino: string = '';
+  terminoInicial: string = '';
   hayError: boolean = false;
   paises: Country[] = [];
+  isLoading: boolean = false;
 
   constructor(private paisServ: PaisService) {}
 
   buscar(termino: string) {
     this.termino = termino;
     this.hayError = false;
+    this.isLoading = true;
     this.paisServ.buscarPais(this.termino).subscribe(
-      (paises) => (this.paises = paises),
+      (paises) => {
+        this.paises = paises;
+        this.isLoading = false;
+      },
       (err) => {
         this.hayError = true;
         this.paises = [];
@@ -27,9 +33,12 @@ export class PorPaisComponent implements OnInit {
   }
 
   sugerencias(termino: string) {
-    this.hayError = false
+    this.hayError = false;
     // TODO: Crear sugerencias
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.paises = this.paisServ.cacheStore.byCountries.countries;
+    this.terminoInicial = this.paisServ.cacheStore.byCountries.term;
+  }
 }
